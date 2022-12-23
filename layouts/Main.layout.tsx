@@ -9,7 +9,7 @@ const MainLayout: FC<NavbarProps> = ({children}) => {
     return (
         <>
         <Navbar/>
-        <Container style={{marginTop: '250px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+        <Container style={{marginTop: '150px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
             {children}
         </Container>
         </>
