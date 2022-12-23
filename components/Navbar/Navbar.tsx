@@ -18,7 +18,7 @@ import { useRouter } from 'next/router';
 
 const Navbar = () => {
 	const [open, setOpen] = useState(false);
-    const router = useRouter();
+	const router = useRouter();
 
 	const handleDrawerOpen = () => {
 		console.log('open');
@@ -45,25 +45,24 @@ const Navbar = () => {
 					</Toolbar>
 				</AppBar>
 				<Drawer variant="persistent" open={open} anchor="left">
-                    <div>
-                        <IconButton
-                            size='medium'
-                            color='inherit'
-                            onClick={handleDrawerClose}>
-                            <ChevronLeftIcon/>
-                        </IconButton>
-                    </div>
-                    <Divider/>
-                    <List>
-                        {navbarItems.map(({text, href}) => (
-                            <ListItem button key={href} onClick={() => router.push(href)}>
-                                <ListItemText>
-                                    {text}
-                                </ListItemText>
-                            </ListItem>
-                        ))}
-                    </List>
-                </Drawer>
+					<div>
+						<IconButton
+							size="medium"
+							color="inherit"
+							onClick={handleDrawerClose}
+						>
+							<ChevronLeftIcon />
+						</IconButton>
+					</div>
+					<Divider />
+					<List>
+						{navbarItems.map(({ text, href }) => (
+							<ListItem button key={href} onClick={() => router.push(href)}>
+								<ListItemText>{text}</ListItemText>
+							</ListItem>
+						))}
+					</List>
+				</Drawer>
 			</div>
 		</>
 	);

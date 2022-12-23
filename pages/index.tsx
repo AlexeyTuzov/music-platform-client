@@ -1,6 +1,5 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import Navbar from '../components/Navbar/Navbar';
+import MainLayout from '../layouts/Main.layout';
 
 const Index = () => {
 	return (
@@ -11,9 +10,10 @@ const Index = () => {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<main className={styles.main}>
-				<Navbar />
-				<h1>Hello World!</h1>
+			<main>
+				<MainLayout>
+					<h1>Hello World!</h1>
+				</MainLayout>
 			</main>
 		</>
 	);
