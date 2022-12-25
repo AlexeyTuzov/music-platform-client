@@ -1,0 +1,24 @@
+.icon {
+    width: 50px;
+    height: 50px;
+}
+
+.player {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    bottom: 0;
+    padding: 0 10px;
+    background-color: lightcyan;
+    position: fixed;
+}
+
+.divArtist {
+    color: gray;
+    font-size: 12;
+}
+
+.volume {
+    margin-left: auto;
+}
