@@ -10,15 +10,14 @@ export default function App({ Component, pageProps }: AppProps) {
 }
 */
 
-const App: FC<AppProps> = ({Component, pageProps}) => {
+const App: FC<AppProps> = ({ Component, pageProps }) => {
+	const { store, props } = wrapper.useWrappedStore(pageProps);
 
-    const {store, props} = wrapper.useWrappedStore(pageProps);
-
-    return (
-        <Provider store={store}>
-            <Component {...props.pageProps} />
-        </Provider>
-    )
-}
+	return (
+		<Provider store={store}>
+			<Component {...props.pageProps} />
+		</Provider>
+	);
+};
 
 export default wrapper.withRedux(App);

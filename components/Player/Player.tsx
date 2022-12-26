@@ -1,46 +1,104 @@
 import { Grid, IconButton } from '@material-ui/core';
 import { Pause, PlayArrow, VolumeDown, VolumeUp } from '@material-ui/icons';
-import { FC } from 'react';
+import { ChangeEvent, FC, useEffect } from 'react';
 import styles from './styles/Player.module.scss';
 import SliderElement from '../Slider/Slider';
 import { ITrack } from '../../types/types';
+import useTypedSelector from '../../hooks/useTypedSelector';
+import useActions from '../../hooks/useActions';
+import timeFormat from '../../helpers/timeFormatter';
 
 interface PlayerProps {
 	active: boolean;
 }
 
+let audio: HTMLAudioElement;
+
 const Player: FC<PlayerProps> = (props) => {
-	const track: ITrack = {
-		_id: '1',
-		name: 'Track 1',
-		artist: 'AIC',
-		text: 'Lorem ipsum dolor sit amet',
-		listens: 0,
-		picture:
-			'http://localhost:5000/picture/e7565bc0-03a2-4633-820b-13a2a07028c1.jpg',
-		audio:
-			'http://localhost:5000/audio/9d3403e5-ad2d-4bae-8c0b-51344c70c856.mp3',
-		comments: []
+	const { pause, duration, volume, active, currentTime } = useTypedSelector(
+		(state) => state.playerReducer
+	);
+	const {
+		playTrack,
+		pauseTrack,
+		setActive,
+		setDuration,
+		setCurrentTime,
+		setVolume
+	} = useActions();
+
+	useEffect(() => {
+		if (!audio) {
+			audio = new Audio();
+		} else {
+            setAudio();
+            playSwitch();
+        }
+	}, [active]);
+
+    const setAudio = () => {
+        if (active) {
+            audio.src = active.audio;
+			audio.volume = volume / 100;
+			audio.onloadedmetadata = () => {
+				setDuration(audio.duration);
+			};
+			audio.ontimeupdate = () => {
+				setCurrentTime(audio.currentTime);
+			};
+        }
+    }
+
+	const playSwitch = () => {
+        console.log(pause);
+		if (pause) {
+			playTrack();
+			audio.play();
+		} else {
+			pauseTrack();
+			audio.pause();
+		}
 	};
 
-	let active = props.active;
+	const changeVolume = (e: ChangeEvent<HTMLInputElement>) => {
+		setVolume(Number(e.target.value));
+		audio.volume = volume / 100;
+	};
+
+	const changeCurrentTime = (e: ChangeEvent<HTMLInputElement>) => {
+		setCurrentTime(Number(e.target.value));
+		audio.currentTime = currentTime;
+	};
+
+    if (!active) {
+        return null;
+    }
 
 	return (
 		<div className={styles.player}>
-			<IconButton className={styles.icon} onClick={(e) => e.stopPropagation()}>
-				{active ? <Pause /> : <PlayArrow />}
+			<IconButton className={styles.icon} onClick={playSwitch}>
+				{pause ? <PlayArrow /> : <Pause />}
 			</IconButton>
 			<Grid
 				container
 				direction="column"
 				style={{ width: 200, margin: '0 20px' }}
 			>
-				<div>{track.name}</div>
-				<div className={styles.divArtist}>{track.artist}</div>
+				<div>{active?.name}</div>
+				<div className={styles.divArtist}>{active?.artist}</div>
 			</Grid>
-			<SliderElement left={0} right={100} onChange={() => ({})} />
+			<SliderElement
+				max={duration}
+				current={currentTime}
+				onChange={(e: ChangeEvent<HTMLInputElement>) => changeCurrentTime(e)}
+				display={timeFormat(currentTime)}
+			/>
 			<VolumeDown className={styles.volume} />
-			<SliderElement left={0} right={100} onChange={() => ({})} />
+			<SliderElement
+				max={100}
+				current={volume}
+				onChange={(e: ChangeEvent<HTMLInputElement>) => changeVolume(e)}
+			/>
 			<VolumeUp />
 		</div>
 	);

@@ -3,9 +3,10 @@ import { ChangeEvent, FC, useState } from 'react';
 import styles from './styles/Slider.module.scss';
 
 interface SliderElementProps {
-	left: number;
-	right: number;
-	onChange: () => void;
+	current: number;
+	max: number;
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+	display?: string;
 }
 
 const SliderElement: FC<SliderElementProps> = (props) => {
@@ -13,11 +14,12 @@ const SliderElement: FC<SliderElementProps> = (props) => {
 		<div>
 			<input
 				type="range"
-				min={props.left}
-				max={props.right}
-				value={props.left}
+				min={0}
+				max={props.max}
+				value={props.current}
 				onChange={props.onChange}
 			/>
+			<span>{props.display}</span>
 		</div>
 	);
 };

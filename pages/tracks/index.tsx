@@ -5,11 +5,14 @@ import { ITrack } from '../../types/types';
 import TrackList from '../../components/TrackList/TrackList';
 import styles from './styles/index.module.scss';
 import useTypedSelector from '../../hooks/useTypedSelector';
+import useActions from '../../hooks/useActions';
 
 const Tracks = () => {
 	const router = useRouter();
 
-    const {active} = useTypedSelector(state => state.playerReducer);
+	const { active } = useTypedSelector((state) => state.playerReducer);
+
+	const { playTrack } = useActions();
 
 	const tracks: ITrack[] = [
 		{

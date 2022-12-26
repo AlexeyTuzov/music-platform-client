@@ -7,22 +7,25 @@ const combinedReducers = combineReducers({
 	playerReducer
 });
 
-const reducer = (state: ReturnType<typeof combinedReducers> | undefined, action: PlayerActions) => {
-    if (action.type === HYDRATE) {
-      const nextState: ReturnType<typeof combinedReducers> = {
-        ...state, // use previous state
-        ...action.payload, // apply delta from hydration
-      };
-      return nextState;
-    } else {
-      return combinedReducers(state, action);
-    }
-  };
-  
-  const makeStore = (context: Context) => configureStore({reducer});
+const reducer = (
+	state: ReturnType<typeof combinedReducers> | undefined,
+	action: PlayerActions
+) => {
+	if (action.type === HYDRATE) {
+		const nextState: ReturnType<typeof combinedReducers> = {
+			...state, // use previous state
+			...action.payload // apply delta from hydration
+		};
+		return nextState;
+	} else {
+		return combinedReducers(state, action);
+	}
+};
 
-  type Store = ReturnType<typeof makeStore>;
+const makeStore = (context: Context) => configureStore({ reducer });
 
-  export type RootState = ReturnType<Store['getState']>;
-  
-  export const wrapper = createWrapper(makeStore, {debug: true});
+type Store = ReturnType<typeof makeStore>;
+
+export type RootState = ReturnType<Store['getState']>;
+
+export const wrapper = createWrapper(makeStore, { debug: true });
