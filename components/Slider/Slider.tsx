@@ -9,16 +9,6 @@ interface SliderElementProps {
 }
 
 const SliderElement: FC<SliderElementProps> = (props) => {
-	/*
-    const [value, setValue] = useState<number>(30);
-
-    const onChange = (e: ChangeEvent<any>, newValue: number | number[]) => {
-        setValue(newValue as number);
-        console.log('state value:', value);
-        console.log('slider value:',e.target);
-    }
-    */
-
 	return (
 		<div>
 			<input
