@@ -3,7 +3,6 @@ import { Pause, PlayArrow, VolumeDown, VolumeUp } from '@material-ui/icons';
 import { ChangeEvent, FC, useEffect } from 'react';
 import styles from './styles/Player.module.scss';
 import SliderElement from '../Slider/Slider';
-import { ITrack } from '../../types/types';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import useActions from '../../hooks/useActions';
 import timeFormat from '../../helpers/timeFormatter';
@@ -21,7 +20,6 @@ const Player: FC<PlayerProps> = (props) => {
 	const {
 		playTrack,
 		pauseTrack,
-		setActive,
 		setDuration,
 		setCurrentTime,
 		setVolume
@@ -31,13 +29,21 @@ const Player: FC<PlayerProps> = (props) => {
 		if (!audio) {
 			audio = new Audio();
 		} else {
-            setAudio();
-            playSwitch();
+            setAudio();   
         }
 	}, [active]);
 
+    useEffect(() => {
+        if (active) {
+            console.log('active in player:', active);
+            console.log('pause in player:', pause);
+            play();
+        }
+    }, [pause, active]);
+
     const setAudio = () => {
         if (active) {
+            console.log('active:', active);
             audio.src = active.audio;
 			audio.volume = volume / 100;
 			audio.onloadedmetadata = () => {
@@ -46,17 +52,23 @@ const Player: FC<PlayerProps> = (props) => {
 			audio.ontimeupdate = () => {
 				setCurrentTime(audio.currentTime);
 			};
+            //playerSwitch();
         }
     }
 
-	const playSwitch = () => {
-        console.log(pause);
+    const play = () => {
+        if (!pause) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    }
+
+	const playerSwitch = () => {
 		if (pause) {
 			playTrack();
-			audio.play();
 		} else {
 			pauseTrack();
-			audio.pause();
 		}
 	};
 
@@ -76,7 +88,7 @@ const Player: FC<PlayerProps> = (props) => {
 
 	return (
 		<div className={styles.player}>
-			<IconButton className={styles.icon} onClick={playSwitch}>
+			<IconButton className={styles.icon} onClickCapture={playerSwitch}>
 				{pause ? <PlayArrow /> : <Pause />}
 			</IconButton>
 			<Grid

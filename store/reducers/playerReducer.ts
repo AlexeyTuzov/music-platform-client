@@ -13,9 +13,11 @@ export const initialState: PlayerState = {
 export default (state: PlayerState = initialState, action: PlayerActions) => {
 	switch (action.type) {
 		case ActionTypes.PLAY:
+            console.log('play action');
 			return { ...state, pause: false };
 
 		case ActionTypes.PAUSE:
+            console.log('pause action');
 			return { ...state, pause: true };
 
 		case ActionTypes.SET_ACTIVE:
