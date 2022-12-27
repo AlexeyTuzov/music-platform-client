@@ -35,16 +35,13 @@ const Player: FC<PlayerProps> = (props) => {
 
     useEffect(() => {
         if (active) {
-            console.log('active in player:', active);
-            console.log('pause in player:', pause);
             play();
         }
     }, [pause, active]);
 
     const setAudio = () => {
         if (active) {
-            console.log('active:', active);
-            audio.src = active.audio;
+            audio.src = 'http://localhost:5000/' + active.audio;
 			audio.volume = volume / 100;
 			audio.onloadedmetadata = () => {
 				setDuration(audio.duration);
@@ -52,7 +49,6 @@ const Player: FC<PlayerProps> = (props) => {
 			audio.ontimeupdate = () => {
 				setCurrentTime(audio.currentTime);
 			};
-            //playerSwitch();
         }
     }
 

@@ -1,5 +1,5 @@
-import { ITrack } from '../../types/types';
-import ActionTypes from '../actions/actionTypes';
+import { ITrack } from '../../../types/types';
+import ActionTypes from '../../enums/playerActionTypes';
 
 interface PlayAction {
 	type: ActionTypes.PLAY;

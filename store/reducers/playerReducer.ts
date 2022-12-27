@@ -1,6 +1,6 @@
-import PlayerState from '../types/playerState';
-import { PlayerActions } from '../types/playerActions';
-import ActionTypes from '../actions/actionTypes';
+import PlayerState from '../types/state/playerState';
+import { PlayerActions } from '../types/actions/playerActions';
+import PlayerActionTypes from '../enums/playerActionTypes';
 
 export const initialState: PlayerState = {
 	active: null,
@@ -10,26 +10,24 @@ export const initialState: PlayerState = {
 	volume: 80
 };
 
-export default (state: PlayerState = initialState, action: PlayerActions) => {
+export default (state: PlayerState = initialState, action: PlayerActions): PlayerState => {
 	switch (action.type) {
-		case ActionTypes.PLAY:
-            console.log('play action');
+		case PlayerActionTypes.PLAY:
 			return { ...state, pause: false };
 
-		case ActionTypes.PAUSE:
-            console.log('pause action');
+		case PlayerActionTypes.PAUSE:
 			return { ...state, pause: true };
 
-		case ActionTypes.SET_ACTIVE:
+		case PlayerActionTypes.SET_ACTIVE:
 			return { ...state, active: action.payload, duration: 0, currentTime: 0 };
 
-		case ActionTypes.SET_CURRENT_TIME:
+		case PlayerActionTypes.SET_CURRENT_TIME:
 			return { ...state, currentTime: action.payload };
 
-		case ActionTypes.SET_DURATION:
+		case PlayerActionTypes.SET_DURATION:
 			return { ...state, duration: action.payload };
 
-		case ActionTypes.SET_VOLUME:
+		case PlayerActionTypes.SET_VOLUME:
 			return { ...state, volume: action.payload };
 
 		default:

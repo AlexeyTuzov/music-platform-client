@@ -1,15 +1,19 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { configureStore, combineReducers, AnyAction } from '@reduxjs/toolkit';
 import playerReducer from './reducers/playerReducer';
+import tracksReducer from './reducers/tracksReducer';
 import { Context, HYDRATE, createWrapper } from 'next-redux-wrapper';
-import { PlayerActions } from './types/playerActions';
+import { PlayerActions } from './types/actions/playerActions';
+import thunk from 'redux-thunk';
+import { TracksActions } from './types/actions/tracksActions';
 
 const combinedReducers = combineReducers({
-	playerReducer
+	playerReducer,
+    tracksReducer
 });
 
 const reducer = (
 	state: ReturnType<typeof combinedReducers> | undefined,
-	action: PlayerActions
+	action: PlayerActions | TracksActions
 ) => {
 	if (action.type === HYDRATE) {
 		const nextState: ReturnType<typeof combinedReducers> = {
@@ -22,10 +26,12 @@ const reducer = (
 	}
 };
 
-const makeStore = (context: Context) => configureStore({ reducer });
+const makeStore = (context: Context) => configureStore({ reducer, middleware: [thunk] });
 
 type Store = ReturnType<typeof makeStore>;
 
 export type RootState = ReturnType<Store['getState']>;
+
+//export type NextThunkDispatch = ThunkDispatch<RootState, void, AnyAction>;
 
 export const wrapper = createWrapper(makeStore, { debug: true });

@@ -5,14 +5,38 @@ import { useState } from 'react';
 import TrackForm from '../../components/TrackForm/TrackForm';
 import FileUploader from '../../components/FileUploader/FileUploader';
 import FileTypes from '../../components/FileUploader/enums/FileTypes';
+import useInput from '../../hooks/useInput';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 const CreateTrack = () => {
+    const router = useRouter();
+
 	const [activeStep, setActiveStep] = useState(0);
 	const [audio, setAudio] = useState(null);
 	const [picture, setPicture] = useState(null);
+    const trackNameHandler = useInput();
+    const artistNameHandler = useInput();
+    const textHandler = useInput();
+
 
 	const next = () => {
 		setActiveStep(activeStep + 1);
+        if (activeStep === 2) {
+            const formData = new FormData();
+            formData.append('name', trackNameHandler.value);
+            formData.append('artist', artistNameHandler.value);
+            formData.append('text', textHandler.value);
+            formData.append('picture', picture ? picture : '');
+            formData.append('audio', audio ? audio : '');
+            axios.post('http://localhost:5000/tracks', formData)
+                .then(() => {
+                    router.push('/tracks');
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        }
 	};
 
 	const back = () => {
@@ -23,7 +47,11 @@ const CreateTrack = () => {
 		<>
 			<MainLayout>
 				<StepWrapper activeStep={activeStep}>
-					{activeStep === 0 && <TrackForm />}
+					{activeStep === 0 && <TrackForm 
+                    trackNameHandler={trackNameHandler}
+                    artistNameHandler={artistNameHandler}
+                    textHandler={textHandler}
+                    />}
 					{activeStep === 1 && (
 						<FileUploader fileType={FileTypes.PICTURE} setFile={setPicture}>
 							<Button>Upload Picture</Button>

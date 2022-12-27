@@ -19,12 +19,6 @@ const TrackItem: FC<TrackItemProps> = (props) => {
     const {playTrack, pauseTrack, setActive} = useActions();
     const {pause, active} = useTypedSelector(state => state.playerReducer);
 
-    /*
-    useEffect(() => {
-        console.log('pause:', pause);
-        console.log('active:', active);
-    }, [pause]);
-    */
     const play = (e: any) => {
         e.stopPropagation();
         setActive(props.track);
@@ -45,7 +39,7 @@ const TrackItem: FC<TrackItemProps> = (props) => {
 			<IconButton className={styles.icon} onClick={(e) => play(e)}>
 				{(active?._id === props.track._id) && !pause ? <Pause /> : <PlayArrow />}
 			</IconButton>
-			<img className={styles.img} src={props.track.picture} />
+			<img className={styles.img} src={'http://localhost:5000/' + props.track.picture} />
 			<Grid container direction="column" className={styles.trackNameGrid}>
 				<div>{props.track.name}</div>
 				<div className={styles.artistName}>{props.track.artist}</div>

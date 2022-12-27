@@ -1,4 +1,4 @@
-enum ActionTypes {
+enum PlayerActionTypes {
 	PLAY = 'play',
 	PAUSE = 'pause',
 	SET_ACTIVE = 'set_active',
@@ -8,4 +8,4 @@ enum ActionTypes {
 	HYDRATE = '__NEXT_REDUX_WRAPPER_HYDRATE__'
 }
 
-export default ActionTypes;
+export default PlayerActionTypes;

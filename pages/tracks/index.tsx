@@ -6,52 +6,27 @@ import TrackList from '../../components/TrackList/TrackList';
 import styles from './styles/index.module.scss';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import useActions from '../../hooks/useActions';
+import { useEffect } from 'react';
 
 const Tracks = () => {
 	const router = useRouter();
 
-	const { active } = useTypedSelector((state) => state.playerReducer);
+	const {tracks, error} = useTypedSelector((state) => state.tracksReducer);
 
-	const { playTrack } = useActions();
+	const {fetchTracks} = useActions();
 
-	const tracks: ITrack[] = [
-		{
-			_id: '1',
-			name: 'Track 1',
-			artist: 'AIC',
-			text: 'Lorem ipsum dolor sit amet',
-			listens: 0,
-			picture:
-				'http://localhost:5000/picture/e7565bc0-03a2-4633-820b-13a2a07028c1.jpg',
-			audio:
-				'http://localhost:5000/audio/9d3403e5-ad2d-4bae-8c0b-51344c70c856.mp3',
-			comments: []
-		},
-		{
-			_id: '2',
-			name: 'Track 2',
-			artist: 'AIC',
-			text: 'Lorem ipsum dolor sit amet',
-			listens: 0,
-			picture:
-				'http://localhost:5000/picture/e7565bc0-03a2-4633-820b-13a2a07028c1.jpg',
-			audio:
-				'http://localhost:5000/audio/9d3403e5-ad2d-4bae-8c0b-51344c70c856.mp3',
-			comments: []
-		},
-		{
-			_id: '3',
-			name: 'Track 3',
-			artist: 'AIC',
-			text: 'Lorem ipsum dolor sit amet',
-			listens: 0,
-			picture:
-				'http://localhost:5000/picture/e7565bc0-03a2-4633-820b-13a2a07028c1.jpg',
-			audio:
-				'http://localhost:5000/audio/9d3403e5-ad2d-4bae-8c0b-51344c70c856.mp3',
-			comments: []
-		}
-	];
+    useEffect(() => {
+        fetchTracks();
+    }, []);
+
+    if (error) {
+        return (
+            <MainLayout>
+                <h1>{error}</h1>
+            </MainLayout>
+        )
+    }
+
 	return (
 		<MainLayout>
 			<Grid container justifyContent="center">
