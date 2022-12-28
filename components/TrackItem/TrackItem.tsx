@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, MouseEventHandler, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import { ITrack } from '../../types/types';
 import styles from './styles/TrackItem.module.scss';
 import { Card, Grid, IconButton } from '@material-ui/core';

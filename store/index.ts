@@ -32,6 +32,4 @@ type Store = ReturnType<typeof makeStore>;
 
 export type RootState = ReturnType<Store['getState']>;
 
-//export type NextThunkDispatch = ThunkDispatch<RootState, void, AnyAction>;
-
 export const wrapper = createWrapper(makeStore, { debug: true });

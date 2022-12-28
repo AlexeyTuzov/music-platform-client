@@ -1,7 +1,6 @@
 import { Box, Button, Card, Grid } from '@material-ui/core';
 import MainLayout from '../../layouts/Main.layout';
 import { useRouter } from 'next/router';
-import { ITrack } from '../../types/types';
 import TrackList from '../../components/TrackList/TrackList';
 import styles from './styles/index.module.scss';
 import useTypedSelector from '../../hooks/useTypedSelector';

@@ -3,22 +3,56 @@ import MainLayout from '../../layouts/Main.layout';
 import { ITrack } from '../../types/types';
 import { useRouter } from 'next/router';
 import styles from './styles/[id].module.scss';
+import { useEffect, useState, use } from 'react';
+import axios from 'axios';
+import useInput from '../../hooks/useInput';
 
 const TrackPage = () => {
-	const track: ITrack = {
-		_id: '1',
-		name: 'Track 1',
-		artist: 'AIC',
-		text: 'Lorem ipsum dolor sit amet',
-		listens: 0,
-		picture:
-			'http://localhost:5000/picture/e7565bc0-03a2-4633-820b-13a2a07028c1.jpg',
-		audio:
-			'http://localhost:5000/audio/9d3403e5-ad2d-4bae-8c0b-51344c70c856.mp3',
-		comments: []
-	};
 
 	const router = useRouter();
+    const id = router.query.id?.toString() || '';
+
+    const track: ITrack = {
+        _id: '',
+        name: '',
+        artist: '',
+        text: '',
+        listens: 0,
+        picture:
+            '',
+        audio:
+            '',
+        comments: []
+    };
+    
+    const [loadedTrack, setLoadedTrack] = useState(track);
+    const usernameHandler = useInput();
+    const commentTextHandler = useInput();
+
+    useEffect(() => {
+        axios.get('http://localhost:5000/tracks/' + id)
+            .then((res) => setLoadedTrack(res.data))
+            .catch(err => {
+                console.log(err);
+            });
+    }, [loadedTrack]);
+
+    const addComment = async () => {
+        await axios.post('http://localhost:5000/tracks/comment', {
+            username: usernameHandler.value,
+            text: commentTextHandler.value,
+            trackId: loadedTrack._id
+            })
+            .then(res => {
+                console.log('response:', res);
+                setLoadedTrack({...loadedTrack, comments: [...loadedTrack.comments, res.data]});
+                usernameHandler.clear();
+                commentTextHandler.clear();
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    } 
 
 	return (
 		<MainLayout>
@@ -30,28 +64,35 @@ const TrackPage = () => {
 				To tracks list
 			</Button>
 			<Grid container>
-				<img src={track.picture} className={styles.img} />
+				<img src={`http://localhost:5000/${loadedTrack.picture}`} className={styles.img} />
 				<div className={styles.div}>
-					<h2>{track.name}</h2>
-					<h2>{track.artist}</h2>
-					<h2>Listens: {track.listens}</h2>
+					<h2>{loadedTrack.name}</h2>
+					<h2>{loadedTrack.artist}</h2>
+					<h2>Listens: {loadedTrack.listens}</h2>
 				</div>
 			</Grid>
 			<h2> Lyrics </h2>
-			<p>{track.text}</p>
+			<p>{loadedTrack.text}</p>
 			<Grid container>
-				<TextField label="Your Name" fullWidth variant="outlined" />
 				<TextField
+                    value={usernameHandler.value}
+                    onChange={usernameHandler.onChange} 
+                    label="Your Name" 
+                    fullWidth variant="outlined"
+                />
+				<TextField
+                    value={commentTextHandler.value}
+                    onChange={commentTextHandler.onChange}
 					label="Comment"
 					fullWidth
 					multiline
 					minRows={4}
 					variant="outlined"
 				/>
-				<Button>Submit</Button>
+				<Button onClick={addComment}>Submit</Button>
 			</Grid>
 			<div>
-				{track.comments.map((comment) => (
+				{loadedTrack?.comments?.map((comment) => (
 					<div>
 						<div>{comment.username}</div>
 						<div>{comment.text}</div>

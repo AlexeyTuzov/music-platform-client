@@ -6,7 +6,6 @@ import axios from "axios";
 export const fetchTracks = () => async (dispatch: Dispatch<TracksActions>) => {
     try {
         const hostAddress = process.env.SERVER_HOST || 'http://localhost:5000';
-        console.log('host address:', hostAddress);
         const response = await axios.get(`${hostAddress}/tracks`);
         dispatch({type: TrackActionTypes.FETCH_TRACKS, payload: response.data});
     } catch (err) {

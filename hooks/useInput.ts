@@ -4,12 +4,17 @@ const useInput = () => {
     const [value, setValue] = useState('');
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(value);
+        setValue(e.target.value);
+    }
+
+    const clear = () => {
+        setValue('');
     }
 
     return {
         value,
-        onChange
+        onChange,
+        clear
     }
 }
 
