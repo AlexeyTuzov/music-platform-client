@@ -10,7 +10,10 @@ export const initialState: PlayerState = {
 	volume: 80
 };
 
-export default (state: PlayerState = initialState, action: PlayerActions): PlayerState => {
+export default (
+	state: PlayerState = initialState,
+	action: PlayerActions
+): PlayerState => {
 	switch (action.type) {
 		case PlayerActionTypes.PLAY:
 			return { ...state, pause: false };

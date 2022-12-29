@@ -1,6 +1,6 @@
-import { ITrack } from "../../../types/types";
+import { ITrack } from '../../../types/types';
 
 export interface TracksState {
-    tracks: ITrack[];
-    error?: string;
+	tracks: ITrack[];
+	error?: string;
 }

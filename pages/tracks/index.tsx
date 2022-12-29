@@ -10,21 +10,21 @@ import { useEffect } from 'react';
 const Tracks = () => {
 	const router = useRouter();
 
-	const {tracks, error} = useTypedSelector((state) => state.tracksReducer);
+	const { tracks, error } = useTypedSelector((state) => state.tracksReducer);
 
-	const {fetchTracks} = useActions();
+	const { fetchTracks } = useActions();
 
-    useEffect(() => {
-        fetchTracks();
-    }, []);
+	useEffect(() => {
+		fetchTracks();
+	}, []);
 
-    if (error) {
-        return (
-            <MainLayout>
-                <h1>{error}</h1>
-            </MainLayout>
-        )
-    }
+	if (error) {
+		return (
+			<MainLayout>
+				<h1>{error}</h1>
+			</MainLayout>
+		);
+	}
 
 	return (
 		<MainLayout>

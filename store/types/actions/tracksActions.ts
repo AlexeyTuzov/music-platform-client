@@ -1,14 +1,14 @@
-import { ITrack } from "../../../types/types";
-import TrackActionTypes from "../../enums/trackActionTypes";
+import { ITrack } from '../../../types/types';
+import TrackActionTypes from '../../enums/trackActionTypes';
 
 interface FetchTracksAction {
-    type: TrackActionTypes.FETCH_TRACKS;
-    payload: ITrack[];
+	type: TrackActionTypes.FETCH_TRACKS;
+	payload: ITrack[];
 }
 
 interface FetchTracksErrorAction {
-    type: TrackActionTypes.FETCH_TRACKS_ERROR;
-    payload: string;
+	type: TrackActionTypes.FETCH_TRACKS_ERROR;
+	payload: string;
 }
 
 interface Hydrate {
@@ -16,6 +16,4 @@ interface Hydrate {
 	payload: any;
 }
 
-export type TracksActions =
-    FetchTracksAction |
-    FetchTracksErrorAction;
+export type TracksActions = FetchTracksAction | FetchTracksErrorAction;

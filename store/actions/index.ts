@@ -4,6 +4,6 @@ import * as CommentActions from './commentsActions';
 
 export default {
 	...PlayerActions,
-    ...TracksActions,
-    ...CommentActions
+	...TracksActions,
+	...CommentActions
 };

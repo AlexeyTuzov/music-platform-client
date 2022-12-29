@@ -17,31 +17,26 @@ const Player: FC<PlayerProps> = (props) => {
 	const { pause, duration, volume, active, currentTime } = useTypedSelector(
 		(state) => state.playerReducer
 	);
-	const {
-		playTrack,
-		pauseTrack,
-		setDuration,
-		setCurrentTime,
-		setVolume
-	} = useActions();
+	const { playTrack, pauseTrack, setDuration, setCurrentTime, setVolume } =
+		useActions();
 
 	useEffect(() => {
 		if (!audio) {
 			audio = new Audio();
 		} else {
-            setAudio();   
-        }
+			setAudio();
+		}
 	}, [active]);
 
-    useEffect(() => {
-        if (active) {
-            play();
-        }
-    }, [pause, active]);
+	useEffect(() => {
+		if (active) {
+			play();
+		}
+	}, [pause, active]);
 
-    const setAudio = () => {
-        if (active) {
-            audio.src = 'http://localhost:5000/' + active.audio;
+	const setAudio = () => {
+		if (active) {
+			audio.src = 'http://localhost:5000/' + active.audio;
 			audio.volume = volume / 100;
 			audio.onloadedmetadata = () => {
 				setDuration(audio.duration);
@@ -49,16 +44,16 @@ const Player: FC<PlayerProps> = (props) => {
 			audio.ontimeupdate = () => {
 				setCurrentTime(audio.currentTime);
 			};
-        }
-    }
+		}
+	};
 
-    const play = () => {
-        if (!pause) {
-            audio.play();
-        } else {
-            audio.pause();
-        }
-    }
+	const play = () => {
+		if (!pause) {
+			audio.play();
+		} else {
+			audio.pause();
+		}
+	};
 
 	const playerSwitch = () => {
 		if (pause) {
@@ -78,9 +73,9 @@ const Player: FC<PlayerProps> = (props) => {
 		audio.currentTime = currentTime;
 	};
 
-    if (!active) {
-        return null;
-    }
+	if (!active) {
+		return null;
+	}
 
 	return (
 		<div className={styles.player}>

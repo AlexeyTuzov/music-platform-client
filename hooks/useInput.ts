@@ -1,21 +1,21 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from 'react';
 
 const useInput = () => {
-    const [value, setValue] = useState('');
+	const [value, setValue] = useState('');
 
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.target.value);
-    }
+	const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setValue(e.target.value);
+	};
 
-    const clear = () => {
-        setValue('');
-    }
+	const clear = () => {
+		setValue('');
+	};
 
-    return {
-        value,
-        onChange,
-        clear
-    }
-}
+	return {
+		value,
+		onChange,
+		clear
+	};
+};
 
 export default useInput;
