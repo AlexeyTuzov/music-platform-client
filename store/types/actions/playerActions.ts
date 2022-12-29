@@ -1,36 +1,36 @@
 import { ITrack } from '../../../types/types';
-import ActionTypes from '../../enums/playerActionTypes';
+import PlayerActionTypes from '../../enums/playerActionTypes';
 
 interface PlayAction {
-	type: ActionTypes.PLAY;
+	type: PlayerActionTypes.PLAY;
 }
 
 interface PauseAction {
-	type: ActionTypes.PAUSE;
+	type: PlayerActionTypes.PAUSE;
 }
 
 interface SetVolumeAction {
-	type: ActionTypes.SET_VOLUME;
+	type: PlayerActionTypes.SET_VOLUME;
 	payload: number;
 }
 
 interface SetActiveAction {
-	type: ActionTypes.SET_ACTIVE;
+	type: PlayerActionTypes.SET_ACTIVE;
 	payload: ITrack;
 }
 
 interface SetDurationAction {
-	type: ActionTypes.SET_DURATION;
+	type: PlayerActionTypes.SET_DURATION;
 	payload: number;
 }
 
 interface SetCurrentTimeAction {
-	type: ActionTypes.SET_CURRENT_TIME;
+	type: PlayerActionTypes.SET_CURRENT_TIME;
 	payload: number;
 }
 
 interface Hydrate {
-	type: ActionTypes.HYDRATE;
+	type: PlayerActionTypes.HYDRATE;
 	payload: any;
 }
 

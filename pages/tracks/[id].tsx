@@ -44,7 +44,6 @@ const TrackPage = () => {
             trackId: loadedTrack._id
             })
             .then(res => {
-                console.log('response:', res);
                 setLoadedTrack({...loadedTrack, comments: [...loadedTrack.comments, res.data]});
                 usernameHandler.clear();
                 commentTextHandler.clear();

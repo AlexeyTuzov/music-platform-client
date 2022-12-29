@@ -11,6 +11,11 @@ interface FetchTracksErrorAction {
     payload: string;
 }
 
+interface Hydrate {
+	type: TrackActionTypes.HYDRATE;
+	payload: any;
+}
+
 export type TracksActions =
     FetchTracksAction |
-    FetchTracksErrorAction
+    FetchTracksErrorAction;
