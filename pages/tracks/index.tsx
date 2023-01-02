@@ -10,7 +10,7 @@ import debounce from '../../helpers/debounce';
 
 const Tracks = () => {
 	const router = useRouter();
-    const [query, setQuery] = useState<string>('');
+	const [query, setQuery] = useState<string>('');
 
 	const { tracks, error } = useTypedSelector((state) => state.tracksReducer);
 
@@ -20,12 +20,12 @@ const Tracks = () => {
 		fetchTracks();
 	}, []);
 
-    const debouncedSearch = useCallback(debounce(searchTracks), []);
+	const debouncedSearch = useCallback(debounce(searchTracks), []);
 
-    const search = (e: ChangeEvent<HTMLInputElement>) => {
-        setQuery(e.target.value);
-        debouncedSearch();
-    };
+	const search = (e: ChangeEvent<HTMLInputElement>) => {
+		setQuery(e.target.value);
+		debouncedSearch();
+	};
 
 	if (error) {
 		return (
@@ -47,12 +47,12 @@ const Tracks = () => {
 							</Button>
 						</Grid>
 					</Box>
-                    <TextField
-                    fullWidth
-                    value={query}
-                    onChange={search}
-                    variant='outlined' 
-                    />
+					<TextField
+						fullWidth
+						value={query}
+						onChange={search}
+						variant="outlined"
+					/>
 					<TrackList tracks={tracks} />
 				</Card>
 			</Grid>

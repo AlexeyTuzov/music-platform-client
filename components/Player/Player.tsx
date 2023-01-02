@@ -79,30 +79,42 @@ const Player: FC<PlayerProps> = (props) => {
 
 	return (
 		<div className={styles.player}>
-			<IconButton className={styles.icon} onClickCapture={playerSwitch}>
-				{pause ? <PlayArrow /> : <Pause />}
-			</IconButton>
-			<Grid
-				container
-				direction="column"
-				style={{ width: 200, margin: '0 20px' }}
-			>
-				<div>{active?.name}</div>
-				<div className={styles.divArtist}>{active?.artist}</div>
+			<Grid container>
+				<Grid item xs={12} md={3}>
+					<Grid container direction="row" className={styles.trackInfoContainer}>
+						<Grid item className={styles.icon}>
+							<IconButton onClickCapture={playerSwitch}>
+								{pause ? <PlayArrow /> : <Pause />}
+							</IconButton>
+						</Grid>
+						<Grid item direction="column" className={styles.trackInfo}>
+							<div>{active?.name}</div>
+							<div className={styles.divArtist}>{active?.artist}</div>
+						</Grid>
+					</Grid>
+				</Grid>
+				<Grid item className={styles.current} xs={12} md={5}>
+					<SliderElement
+						max={duration}
+						current={currentTime}
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							changeCurrentTime(e)
+						}
+						display={timeFormat(currentTime)}
+					/>
+				</Grid>
+				<Grid item xs={12} md={4} direction="row">
+					<Grid container direction="row">
+						<VolumeDown className={styles.volume} />
+						<SliderElement
+							max={100}
+							current={volume}
+							onChange={(e: ChangeEvent<HTMLInputElement>) => changeVolume(e)}
+						/>
+						<VolumeUp className={styles.volume} />
+					</Grid>
+				</Grid>
 			</Grid>
-			<SliderElement
-				max={duration}
-				current={currentTime}
-				onChange={(e: ChangeEvent<HTMLInputElement>) => changeCurrentTime(e)}
-				display={timeFormat(currentTime)}
-			/>
-			<VolumeDown className={styles.volume} />
-			<SliderElement
-				max={100}
-				current={volume}
-				onChange={(e: ChangeEvent<HTMLInputElement>) => changeVolume(e)}
-			/>
-			<VolumeUp />
 		</div>
 	);
 };

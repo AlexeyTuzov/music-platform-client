@@ -1,5 +1,4 @@
-import { Grid, Slider } from '@material-ui/core';
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC } from 'react';
 import styles from './styles/Slider.module.scss';
 
 interface SliderElementProps {
@@ -11,7 +10,7 @@ interface SliderElementProps {
 
 const SliderElement: FC<SliderElementProps> = (props) => {
 	return (
-		<div>
+		<div className={styles.div}>
 			<input
 				type="range"
 				min={0}
@@ -19,7 +18,7 @@ const SliderElement: FC<SliderElementProps> = (props) => {
 				value={props.current}
 				onChange={props.onChange}
 			/>
-			<span>{props.display}</span>
+			<span className={styles.span}>{props.display}</span>
 		</div>
 	);
 };

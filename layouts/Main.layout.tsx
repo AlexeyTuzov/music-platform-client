@@ -6,20 +6,24 @@ import Head from 'next/head';
 
 interface NavbarProps {
 	children: NonNullable<ReactNode>;
-    title?: string;
-    description?: string;
+	title?: string;
+	description?: string;
 }
 const MainLayout: FC<NavbarProps> = (props) => {
 	return (
 		<>
-            <Head>
-                <title>
-                {props.title || 'Musical platform'}
-                </title>
-                <meta name='description' content={`Musical platform - you can upload your tracks here - ${props.description}`} />
-                <meta name='robots' content={'index, follow'}/>
-                <meta name='viewport' content={'width=device-width height=device-height initial-scale=1'}/>
-            </Head>
+			<Head>
+				<title>{props.title || 'Musical platform'}</title>
+				<meta
+					name="description"
+					content={`Musical platform - you can upload your tracks here - ${props.description}`}
+				/>
+				<meta name="robots" content={'index, follow'} />
+				<meta
+					name="viewport"
+					content={'width=device-width height=device-height initial-scale=1'}
+				/>
+			</Head>
 			<Navbar />
 			<Container
 				style={{

@@ -47,7 +47,9 @@ const TrackPage = () => {
 	};
 
 	return (
-		<MainLayout title={`Musical platform - ${loadedTrack.artist} - ${loadedTrack.name}`}>
+		<MainLayout
+			title={`Musical platform - ${loadedTrack.artist} - ${loadedTrack.name}`}
+		>
 			<Button
 				onClick={() => router.push('/tracks')}
 				variant="outlined"
