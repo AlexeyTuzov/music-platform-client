@@ -47,7 +47,7 @@ const TrackPage = () => {
 	};
 
 	return (
-		<MainLayout>
+		<MainLayout title={`Musical platform - ${loadedTrack.artist} - ${loadedTrack.name}`}>
 			<Button
 				onClick={() => router.push('/tracks')}
 				variant="outlined"
@@ -87,10 +87,10 @@ const TrackPage = () => {
 				/>
 				<Button onClick={addComment}>Submit</Button>
 			</Grid>
-			<div>
+			<div className={styles.commentsBlockDiv}>
 				{loadedTrack?.comments?.map((comment) => (
-					<div>
-						<div>{comment.username}</div>
+					<div className={styles.commentDiv}>
+						<div className={styles.username}>{comment.username}</div>
 						<div>{comment.text}</div>
 					</div>
 				))}

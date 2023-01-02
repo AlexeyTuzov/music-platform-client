@@ -1,22 +1,31 @@
-import { Box, Button, Card, Grid } from '@material-ui/core';
+import { Box, Button, Card, Grid, TextField } from '@material-ui/core';
 import MainLayout from '../../layouts/Main.layout';
 import { useRouter } from 'next/router';
 import TrackList from '../../components/TrackList/TrackList';
 import styles from './styles/index.module.scss';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import useActions from '../../hooks/useActions';
-import { useEffect } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import debounce from '../../helpers/debounce';
 
 const Tracks = () => {
 	const router = useRouter();
+    const [query, setQuery] = useState<string>('');
 
 	const { tracks, error } = useTypedSelector((state) => state.tracksReducer);
 
-	const { fetchTracks } = useActions();
+	const { fetchTracks, searchTracks } = useActions();
 
 	useEffect(() => {
 		fetchTracks();
 	}, []);
+
+    const debouncedSearch = useCallback(debounce(searchTracks), []);
+
+    const search = (e: ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value);
+        debouncedSearch();
+    };
 
 	if (error) {
 		return (
@@ -27,7 +36,7 @@ const Tracks = () => {
 	}
 
 	return (
-		<MainLayout>
+		<MainLayout title={'Musical platform - Tracks list'}>
 			<Grid container justifyContent="center">
 				<Card className={styles.card} raised={true}>
 					<Box p={3} className={styles.box}>
@@ -38,6 +47,12 @@ const Tracks = () => {
 							</Button>
 						</Grid>
 					</Box>
+                    <TextField
+                    fullWidth
+                    value={query}
+                    onChange={search}
+                    variant='outlined' 
+                    />
 					<TrackList tracks={tracks} />
 				</Card>
 			</Grid>
