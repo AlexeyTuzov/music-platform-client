@@ -5,6 +5,7 @@ import TrackList from '../../components/TrackList/TrackList';
 import styles from './styles/index.module.scss';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import useActions from '../../hooks/useActions';
+import PublishIcon from '@material-ui/icons/Publish';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import debounce from '../../helpers/debounce';
 
@@ -43,7 +44,8 @@ const Tracks = () => {
 						<Grid container justifyContent="space-between">
 							<h1>Load track</h1>
 							<Button onClick={() => router.push('/tracks/create')}>
-								Upload
+                                    <span>Upload</span>
+                                    <PublishIcon className={styles.publishIcon}/>
 							</Button>
 						</Grid>
 					</Box>

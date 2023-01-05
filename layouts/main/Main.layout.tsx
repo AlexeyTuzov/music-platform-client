@@ -29,11 +29,12 @@ const MainLayout: FC<NavbarProps> = (props) => {
             <Background />
 			<Container
 				style={{
-					paddingTop: '150px',
+					paddingTop: '70px',
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'center',
-					alignItems: 'center'
+					alignItems: 'center',
+                    maxHeight: '100vh'
 				}}
 			>
 				{props.children}
