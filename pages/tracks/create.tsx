@@ -1,6 +1,6 @@
 import { Button, Container, Grid } from '@material-ui/core';
 import StepWrapper from '../../components/StepWrapper/StepWrapper';
-import MainLayout from '../../layouts/Main.layout';
+import MainLayout from '../../layouts/main/Main.layout';
 import { useState } from 'react';
 import TrackForm from '../../components/TrackForm/TrackForm';
 import FileUploader from '../../components/FileUploader/FileUploader';

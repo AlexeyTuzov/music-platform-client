@@ -1,8 +1,9 @@
 import { FC, ReactNode } from 'react';
-import Navbar from '../components/Navbar/Navbar';
+import Navbar from '../../components/Navbar/Navbar';
 import { Container } from '@material-ui/core';
-import Player from '../components/Player/Player';
+import Player from '../../components/Player/Player';
 import Head from 'next/head';
+import Background from '../../components/Background/Background';
 
 interface NavbarProps {
 	children: NonNullable<ReactNode>;
@@ -25,9 +26,10 @@ const MainLayout: FC<NavbarProps> = (props) => {
 				/>
 			</Head>
 			<Navbar />
+            <Background />
 			<Container
 				style={{
-					marginTop: '150px',
+					paddingTop: '150px',
 					display: 'flex',
 					flexDirection: 'column',
 					justifyContent: 'center',
@@ -36,7 +38,7 @@ const MainLayout: FC<NavbarProps> = (props) => {
 			>
 				{props.children}
 			</Container>
-			<Player active={true} />
+			<Player />
 		</>
 	);
 };

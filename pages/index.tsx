@@ -1,7 +1,8 @@
 import Head from 'next/head';
-import MainLayout from '../layouts/Main.layout';
+import MainLayout from '../layouts/main/Main.layout';
 
 const Index = () => {
+
 	return (
 		<>
 			<Head>
@@ -12,7 +13,7 @@ const Index = () => {
 			</Head>
 			<main>
 				<MainLayout>
-					<h1>Hello World!</h1>
+					<h1>Sounds good!</h1>
 				</MainLayout>
 			</main>
 		</>

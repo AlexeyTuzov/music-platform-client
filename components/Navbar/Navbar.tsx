@@ -41,7 +41,7 @@ const Navbar = () => {
 						>
 							<MenuIcon />
 						</IconButton>
-						<Typography variant="h5">Persistent drawer</Typography>
+						<Typography variant="h5">Sounds the way You like!</Typography>
 					</Toolbar>
 				</AppBar>
 				<Drawer variant="persistent" open={open} anchor="left">

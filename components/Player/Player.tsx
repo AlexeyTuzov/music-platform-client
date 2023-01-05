@@ -7,13 +7,9 @@ import useTypedSelector from '../../hooks/useTypedSelector';
 import useActions from '../../hooks/useActions';
 import timeFormat from '../../helpers/timeFormatter';
 
-interface PlayerProps {
-	active: boolean;
-}
-
 let audio: HTMLAudioElement;
 
-const Player: FC<PlayerProps> = (props) => {
+const Player = () => {
 	const { pause, duration, volume, active, currentTime } = useTypedSelector(
 		(state) => state.playerReducer
 	);

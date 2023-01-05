@@ -1,5 +1,5 @@
 import { Button, Grid, TextField } from '@material-ui/core';
-import MainLayout from '../../layouts/Main.layout';
+import MainLayout from '../../layouts/main/Main.layout';
 import { ITrack } from '../../types/types';
 import { useRouter } from 'next/router';
 import styles from './styles/[id].module.scss';

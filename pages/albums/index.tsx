@@ -1,4 +1,4 @@
-import MainLayout from '../../layouts/Main.layout';
+import MainLayout from '../../layouts/main/Main.layout';
 
 const Albums = () => {
 	return (
