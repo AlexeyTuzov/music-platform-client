@@ -1,4 +1,4 @@
-import { Button, Container, Grid } from '@material-ui/core';
+import { Button, Container, Grid, Paper } from '@material-ui/core';
 import StepWrapper from '../../components/StepWrapper/StepWrapper';
 import MainLayout from '../../layouts/main/Main.layout';
 import { useState } from 'react';
@@ -8,6 +8,9 @@ import FileTypes from '../../components/FileUploader/enums/FileTypes';
 import useInput from '../../hooks/useInput';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import KeyArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import KeyArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import styles from './styles/create.module.scss';
 
 const CreateTrack = () => {
 	const router = useRouter();
@@ -66,12 +69,26 @@ const CreateTrack = () => {
 					)}
 				</StepWrapper>
 				<Grid container justifyContent="space-between">
-					<Button onClick={back} disabled={activeStep === 0}>
-						Back
-					</Button>
-					<Button onClick={next} disabled={activeStep === 3}>
-						Next
-					</Button>
+					<Grid item>
+						<Paper>
+							<Grid container justifyContent="center">
+								<KeyArrowLeft className={styles.keyArrow} />
+								<Button onClick={back} disabled={activeStep === 0}>
+									Back
+								</Button>
+							</Grid>
+						</Paper>
+					</Grid>
+					<Grid item>
+						<Paper>
+							<Grid container justifyContent="center">
+								<Button onClick={next} disabled={activeStep === 3}>
+									Next
+								</Button>
+								<KeyArrowRight className={styles.keyArrow} />
+							</Grid>
+						</Paper>
+					</Grid>
 				</Grid>
 			</MainLayout>
 		</>
