@@ -2,7 +2,6 @@ import Head from 'next/head';
 import MainLayout from '../layouts/main/Main.layout';
 
 const Index = () => {
-
 	return (
 		<>
 			<Head>

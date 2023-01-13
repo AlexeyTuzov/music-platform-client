@@ -26,7 +26,7 @@ const MainLayout: FC<NavbarProps> = (props) => {
 				/>
 			</Head>
 			<Navbar />
-            <Background />
+			<Background />
 			<Container
 				style={{
 					paddingTop: '70px',
@@ -34,7 +34,7 @@ const MainLayout: FC<NavbarProps> = (props) => {
 					flexDirection: 'column',
 					justifyContent: 'center',
 					alignItems: 'center',
-                    maxHeight: '100vh'
+					maxHeight: '100vh'
 				}}
 			>
 				{props.children}

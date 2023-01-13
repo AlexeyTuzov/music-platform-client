@@ -44,8 +44,8 @@ const Tracks = () => {
 						<Grid container justifyContent="space-between">
 							<h1>Load track</h1>
 							<Button onClick={() => router.push('/tracks/create')}>
-                                    <span>Upload</span>
-                                    <PublishIcon className={styles.publishIcon}/>
+								<span>Upload</span>
+								<PublishIcon className={styles.publishIcon} />
 							</Button>
 						</Grid>
 					</Box>
