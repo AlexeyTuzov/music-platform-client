@@ -1,6 +1,6 @@
 import { Grid, IconButton } from '@material-ui/core';
 import { Pause, PlayArrow, VolumeDown, VolumeUp } from '@material-ui/icons';
-import { ChangeEvent, FC, useEffect } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import styles from './styles/Player.module.scss';
 import SliderElement from '../Slider/Slider';
 import useTypedSelector from '../../hooks/useTypedSelector';

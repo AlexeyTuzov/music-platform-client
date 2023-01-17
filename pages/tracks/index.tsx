@@ -8,6 +8,7 @@ import useActions from '../../hooks/useActions';
 import PublishIcon from '@material-ui/icons/Publish';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import debounce from '../../helpers/debounce';
+import CenterCard from '../../components/CenterCard/CenterCard';
 
 const Tracks = () => {
 	const router = useRouter();
@@ -38,8 +39,8 @@ const Tracks = () => {
 
 	return (
 		<MainLayout title={'Musical platform - Tracks list'}>
-			<Grid container justifyContent="center">
-				<Card className={styles.card} raised={true}>
+			<CenterCard>
+				<>
 					<Box p={3} className={styles.box}>
 						<Grid container justifyContent="space-between">
 							<h1>Load track</h1>
@@ -56,8 +57,8 @@ const Tracks = () => {
 						variant="outlined"
 					/>
 					<TrackList tracks={tracks} />
-				</Card>
-			</Grid>
+				</>
+			</CenterCard>
 		</MainLayout>
 	);
 };
