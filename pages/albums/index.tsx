@@ -5,8 +5,8 @@ const Albums = () => {
 	return (
 		<MainLayout>
 			<CenterCard>
-                <h1>Albums</h1>
-            </CenterCard>
+				<h1>Albums</h1>
+			</CenterCard>
 		</MainLayout>
 	);
 };
