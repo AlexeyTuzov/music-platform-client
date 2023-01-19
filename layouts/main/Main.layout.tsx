@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react';
 import Navbar from '../../components/Navbar/Navbar';
-import { Container } from '@material-ui/core';
+import { Container, CssBaseline } from '@material-ui/core';
 import Player from '../../components/Player/Player';
 import Head from 'next/head';
 import Background from '../../components/Background/Background';
@@ -25,6 +25,7 @@ const MainLayout: FC<NavbarProps> = (props) => {
 					content={'width=device-width height=device-height initial-scale=1'}
 				/>
 			</Head>
+            <CssBaseline />
 			<Navbar />
 			<Background />
 			<Container

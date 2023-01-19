@@ -4,7 +4,6 @@ import {
 	CssBaseline,
 	Divider,
 	Drawer,
-	Grid,
 	IconButton,
 	List,
 	ListItem,
@@ -35,7 +34,6 @@ const Navbar = () => {
 	return (
 		<>
 			<div>
-				<CssBaseline />
 				<AppBar position="fixed">
 					<Toolbar className={styles.toolbar}>
 						<div className={styles.button}>

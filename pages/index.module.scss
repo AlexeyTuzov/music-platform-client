@@ -35,10 +35,21 @@
     height: 100px;
     background-color: crimson;
     border: 1px solid black;
-    border-radius: 30px;
+    border-radius: 50px;
+    color: aliceblue;
 }
 
 .img {
     width: inherit;
     height: inherit;
+}
+
+.playIcon {
+    position: absolute;
+    display: grid;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
 }
