@@ -25,7 +25,7 @@ const MainLayout: FC<NavbarProps> = (props) => {
 					content={'width=device-width height=device-height initial-scale=1'}
 				/>
 			</Head>
-            <CssBaseline />
+			<CssBaseline />
 			<Navbar />
 			<Background />
 			<Container
